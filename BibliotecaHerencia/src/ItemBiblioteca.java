@@ -30,11 +30,15 @@ public abstract class ItemBiblioteca {
     }
     //Métodos
     public boolean prestar(){
-        return true;
+        this.estadoPrestado=true;
+        return this.estadoPrestado;
     }
     public boolean devolver(){
-        return true;
+        this.estadoPrestado=false;
+        return this.estadoPrestado;
     }
+
+
 
     public abstract double calcularMulta(int diasRetraso);
     public abstract int getDiasMaximosPrestamo();
