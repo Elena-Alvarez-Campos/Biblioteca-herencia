@@ -1,8 +1,8 @@
-public abstract class Libro extends ItemBiblioteca {
+public class Libro extends ItemBiblioteca {
     //Attributes
     private String autor;
     //COnstructor
-    public Libro(String autor,String id, String titulo, boolean estadoPrestado){
+    public Libro(int id, String titulo, boolean estadoPrestado,String autor){
         super(id, titulo ,estadoPrestado);
         this.autor=autor;
     }
@@ -21,6 +21,14 @@ public abstract class Libro extends ItemBiblioteca {
     }
     @Override
     public double calcularMulta(int diasRetraso) {
+        double precioMulta=0;
+        if (getDiasMaximosPrestamo()-diasRetraso<0){
+            precioMulta=0.50*(diasRetraso-getDiasMaximosPrestamo());
+        }
         return 0.50;
+    }
+    @Override
+    public String toString(){
+        return"\nID: "+id+", tipo de arículo: Libro, título: "+titulo+", autor: "+autor+", estado prestado: "+estadoPrestado;
     }
 }

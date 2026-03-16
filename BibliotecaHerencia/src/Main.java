@@ -6,7 +6,14 @@ import javax.swing.JOptionPane;
 public class Main {
     public static void main(String[] args) {
         //Catálogo
-        GestorMediateca catalogo1 = new GestorMediateca();
+        ArrayList<ItemBiblioteca> catalogo=new ArrayList<ItemBiblioteca>();
+        Revista item1=new Revista(1,"Hola",false,562);
+        DVD item2=new DVD(2,"Buscando a nemo",false,"Alguien");
+        Libro item3=new Libro(3,"Invisible",false,"Pepe");
+        catalogo.add(item1);
+        catalogo.add(item2);
+        catalogo.add(item3);
+        GestorMediateca gestor = new GestorMediateca(catalogo);
 
         //Menú
 
@@ -26,15 +33,19 @@ public class Main {
                 opcion=Integer.parseInt(menu);
                 switch(opcion){
                     case 1:
-
+                        JOptionPane.showMessageDialog(null,gestor);
                         break;
                     case 2:
+                        gestor.nuevoProducto();
                         break;
                     case 3:
+                        gestor.cambiaTitulo();
                         break;
                     case 4:
+                        gestor.prestarItem();
                         break;
                     case 5:
+                        gestor.devolverItem();
                         break;
                     case 6:
                         programa=false;

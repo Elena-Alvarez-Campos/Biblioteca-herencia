@@ -1,8 +1,8 @@
-public abstract class DVD extends ItemBiblioteca {
+public class DVD extends ItemBiblioteca {
     //Attributes
     private String director;
     //COnstructor
-    public DVD(String director,String id, String titulo, boolean estadoPrestado){
+    public DVD(int id, String titulo, boolean estadoPrestado,String director){
         super(id, titulo ,estadoPrestado);
         this.director=director;
     }
@@ -21,6 +21,14 @@ public abstract class DVD extends ItemBiblioteca {
     }
     @Override
     public double calcularMulta(int diasRetraso) {
-        return 2;
+        double precioMulta=0;
+        if (getDiasMaximosPrestamo()-diasRetraso<0){
+            precioMulta=2*(diasRetraso-getDiasMaximosPrestamo());
+        }
+        return precioMulta;
+    }
+    @Override
+    public String toString(){
+        return"\nID: "+id+", tipo de arículo: DVD, título: "+titulo+", director: "+director+", estado prestado: "+estadoPrestado;
     }
 }

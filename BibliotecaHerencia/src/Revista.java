@@ -1,8 +1,8 @@
-public abstract class Revista extends ItemBiblioteca {
+public class Revista extends ItemBiblioteca {
     //Attributes
     private int numeroEdicion;
     //COnstructor
-    public Revista(int numeroEdicion,String id, String titulo, boolean estadoPrestado){
+    public Revista(int id, String titulo, boolean estadoPrestado,int numeroEdicion){
         super(id, titulo ,estadoPrestado);
         this.numeroEdicion=numeroEdicion;
     }
@@ -20,6 +20,14 @@ public abstract class Revista extends ItemBiblioteca {
     }
     @Override
     public double calcularMulta(int diasRetraso) {
-        return 1;
+        double precioMulta=0;
+        if (getDiasMaximosPrestamo()-diasRetraso<0){
+            precioMulta=1*(diasRetraso-getDiasMaximosPrestamo());
+        }
+        return precioMulta;
+    }
+    @Override
+    public String toString(){
+        return"\nID: "+id+", tipo de arículo: Revista, título: "+titulo+", numero de edición: "+numeroEdicion+", estado prestado: "+estadoPrestado;
     }
 }
